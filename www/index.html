@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title></title>
+  <link rel='stylesheet' href='style.css'>
+  
+</head>
+<body>
+      <form id='settings' class='row collapse'>
+        <div class='small-9 medium-10 large-11 columns'>
+          <input type='url' class='' required placeholder='url' id='url'>
+        </div>
+        <div class='small-3 medium-2 large-1 columns'>
+          <button type='submit' class='postfix button' type='submit'>Connect!</button>
+        </div>
+      </form>
+  <section class='middle'>
+    <div id='timeline' class='row'>
+    </div>
+  </section>
+  <div class='footer'>
+    <form id='emitter' class='row collapse' enctype="multipart/form-data">
+      <div class='small-3 columns'>
+        <input type='text' class='' name='eventType' placeholder='Event type'>
+      </div>
+      <div class='small-7 columns'>
+        <textarea class='form-control' name='eventData' placeholder='Event data'></textarea>
+      </div>
+      <div class='small-2 columns'>
+        <button type='submit' class='button postfix'>Send</button>
+      </div>
+    </form>
+  </div>
+  <script src='script.js' type='text/javascript'></script>
+</body>
+</html>
