@@ -11,9 +11,7 @@ function Timeline($element) {
     WARNING: 'connection warning',
     ERROR: 'connection error'
   };
-  
-  console.log('$element: ',$element);
-  
+    
   this.receivedEvent = function(type,data) {
     data = YAML.stringify(data,4);
     this.addItem(Timeline.ITEM_TYPES.RECEIVED_EVENT,type,data);
@@ -46,7 +44,6 @@ function Timeline($element) {
     $row.setAttribute("class",'row ');
     
     var $item = document.createElement("div");
-    //$item.setAttribute("class",type+' item small-8 columns');
     $item.setAttribute("class",type+' item columns');
     $row.appendChild($item);
     
