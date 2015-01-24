@@ -1,9 +1,11 @@
-var $settings     = document.querySelector('#settings');
-var $settingsURL  = document.querySelector('#settings #url');
-var $timeline     = document.querySelector('#timeline'); 
-var $emitter     = document.querySelector('#emitter'); 
+var $settings         = document.querySelector('#settings');
+var $settingsURL      = document.querySelector('#settings #url');
+var $timeline         = document.querySelector('#timeline'); 
+var $emitter          = document.querySelector('#emitter'); 
 
 var timeline      = new Timeline($timeline); 
+
+console.log('$settingsSubmit: ',$settingsSubmit);
 
 var _socket; 
 

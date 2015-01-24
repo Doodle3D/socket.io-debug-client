@@ -32,17 +32,17 @@ function Timeline($element) {
     $row.setAttribute("class",'row ');
     
     var $item = document.createElement("div");
-    $item.setAttribute("class",type+' item small-6 columns');
+    $item.setAttribute("class",type+' item small-8 columns');
     $row.appendChild($item);
     
     var $header = document.createElement("div");
-    $header.setAttribute("class",'header');
+    $header.setAttribute("class",'header small-12 medium-3 columns');
     $header.textContent = header;
     $item.appendChild($header);
     
     if(body) {
       var $body = document.createElement("pre");
-      $body.setAttribute("class",'body');
+      $body.setAttribute("class",'body small-12 medium-9 columns');
       $body.textContent = body;
       $item.appendChild($body);
     }

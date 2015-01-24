@@ -13,7 +13,7 @@ var paths = {
        'scripts/**/*.js'
       ],
   css: mainBowerFiles({filter:'**/*.css'}),
-  less: 'less/**/*.less',
+  less: 'less/*.less',
   html: 'www/**.html',
   build: 'www/**'
 };
