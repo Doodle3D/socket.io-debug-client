@@ -61,10 +61,11 @@ $emitter.onsubmit = function(event) {
 };
 
 function sendMessage(type,data) {
-  timeline.sendEvent(type,data);
+  if(!_socket) return;
   _socket.emit(type,data,function(response) {
     timeline.receivedResponse(response);
   });
+  timeline.sendEvent(type,data);
 }
 
 
