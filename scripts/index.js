@@ -9,19 +9,48 @@ var _socket;
 
 $settings.onsubmit = function(event) {
   var url = $settingsURL.value;
-  if(_socket) _socket.removeAllListeners();
-  connectTo(url,function(err,socket) {
-    if(err) return alert(err);
-    _socket = socket;
-    anyEventCreator(_socket);
-    _socket.on("any",onAnyEvent); 
-  });
+  connect(url);
   event.preventDefault();
   timeline.clear();
 };
-
-function onAnyEvent(eventType,data) {
-  timeline.receivedEvent(eventType,data);
+function connect(url) {
+  console.log("connecting to: ",url);
+  if(_socket) {
+    _socket.disconnect();
+    _socket.removeAllListeners();
+  }
+  _socket = io(url);
+  _socket.on('connect',function() {
+    timeline.addSuccess('Connected to: ',url);
+  });
+  _socket.on('connect_error',function(err) {
+    timeline.addError('Connect error: ',err);
+  });
+  _socket.on('connect_timeout',function() {
+    timeline.addError('Connection timeout');
+  });
+  _socket.on('reconnect',function(num) {
+    timeline.addSuccess('Reconnected '+num);
+  });
+  _socket.on('reconnect_attempt',function() {
+    timeline.addWarning('Reconnect attempt');
+  });
+  _socket.on('reconnecting',function(num) {
+    timeline.addWarning('Reconnecting '+num);
+  });
+  _socket.on('reconnect_error',function(err) {
+    timeline.addError('Reconnect error: ',err);
+  });
+  _socket.on('reconnect_failed',function() {
+    timeline.addError('Reconnecting failed');
+  });
+  _socket.on('error',function(err) {
+    timeline.addError('Connect error: ',err);
+  });
+  anyEventCreator(_socket);
+  _socket.on("any",function(eventType,data) {
+    timeline.receivedEvent(eventType,data);
+  }); 
 }
 
 $emitter.onsubmit = function(event) {
@@ -30,21 +59,6 @@ $emitter.onsubmit = function(event) {
   sendMessage($eventType.value,YAML.parse($eventData.value));
   event.preventDefault();
 };
-
-function connectTo(url,callback) {
-  console.log("connecting to: ",url);
-  var socket = io(url);
-  if(!socket.connected) {
-    socket.once('connect',function() {
-      if(callback) callback(null,socket);
-    });
-    socket.once('error',function(err) {
-      console.log("connect error: ",err);
-      if(callback) callback(err);
-    });
-  }
-  return socket;
-}
 
 function sendMessage(type,data) {
   timeline.sendEvent(type,data);

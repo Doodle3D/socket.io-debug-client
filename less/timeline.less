@@ -13,35 +13,59 @@
       padding: 0;
       transition: opacity 500ms;
       .header {
-        border-bottom: 1px solid transparent;
         padding: 4px 8px;
         color: #fff;
         border-radius: 0 0 3px 0;
       }
       .body {
         padding: 4px 8px 6px 8px;
+        overflow: scroll;
       }
     }
-    .received-event {
+    
+    //layout
+    .received, .send {
+      width: 66.6667%;
+    }
+    .send.event {
+      float: right;
+    }
+    
+    // colors
+    .event {
       border-color: #0078A0;
       .header {
         background-color: #008CBA;
-        border-color: #0078A0;
       }
     }
-    .received-response {
+    .response {
       border-color: #a0009a;
       .header {
         background-color: #ba00ba;
-        border-color: #a0009a;
       }
     }
-    .send-event {
+    .success {
       border-color: #00a050;
-      float: right;
       .header {
         background-color: #00ba72;
-        border-color: #00a050;
+      }
+    }
+    .info {
+      border-color: #9aa000;
+      .header {
+        background-color: #b3ba00;
+      }
+    }
+    .warning {
+      border-color: #a05c00;
+      .header {
+        background-color: #ba4f00;
+      }
+    }
+    .error {
+      border-color: #a00000;
+      .header {
+        background-color: #ba0000;
       }
     }
   }
