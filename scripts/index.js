@@ -5,8 +5,6 @@ var $emitter          = document.querySelector('#emitter');
 
 var timeline      = new Timeline($timeline); 
 
-console.log('$settingsSubmit: ',$settingsSubmit);
-
 var _socket; 
 
 $settings.onsubmit = function(event) {

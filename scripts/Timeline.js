@@ -47,6 +47,7 @@ function Timeline($element) {
       $item.appendChild($body);
     }
     _$element.appendChild($row);
+    fadeIn($item);
     _$element.scrollTop = _$element.scrollHeight;
   };
   
@@ -55,4 +56,12 @@ function Timeline($element) {
       _$element.removeChild(_$element.firstChild);
     }
   };
+  function fadeIn($element) {
+    // Make the element fully transparent.
+    $element.style.opacity = 0;
+    // Make sure the initial state is applied.
+    window.getComputedStyle($element).opacity;
+    // Fade it in.
+    $element.style.opacity = 1;
+  }
 }
