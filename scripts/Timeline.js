@@ -13,32 +13,35 @@ function Timeline($element) {
   };
     
   this.receivedEvent = function(type,data) {
-    data = YAML.stringify(data,4);
-    this.addItem(Timeline.ITEM_TYPES.RECEIVED_EVENT,type,data);
+    var yaml = YAML.stringify(data,2);
+    var rawBody = JSON.stringify(data, undefined, 2);
+    this.addItem(Timeline.ITEM_TYPES.RECEIVED_EVENT,type,yaml,rawBody);
   };
   this.receivedResponse = function(response) {
-    response = YAML.stringify(response,4);
-    this.addItem(Timeline.ITEM_TYPES.RECEIVED_RESPONSE,'Response',response);
+    var yaml = YAML.stringify(response,2);
+    var rawBody = JSON.stringify(data, undefined, 2);
+    this.addItem(Timeline.ITEM_TYPES.RECEIVED_RESPONSE,'Response',yaml,rawBody);
   };
   this.sendEvent = function(type,data) {
-    data = YAML.stringify(data,4);
-    this.addItem(Timeline.ITEM_TYPES.SEND_EVENT,type,data);
+    var yaml = YAML.stringify(data,2);
+    var rawBody = JSON.stringify(data, undefined, 2);
+    this.addItem(Timeline.ITEM_TYPES.SEND_EVENT,type,yaml,rawBody);
   };
   this.addSuccess = function(header,body) {
-    this.addItem(Timeline.ITEM_TYPES.SUCCESS,header,body);
+    this.addItem(Timeline.ITEM_TYPES.SUCCESS,header,body,body);
   };
   this.addInfo = function(header,body) {
-    this.addItem(Timeline.ITEM_TYPES.INFO,header,body);
+    this.addItem(Timeline.ITEM_TYPES.INFO,header,body,body);
   };
   this.addWarning = function(header,body) {
-    this.addItem(Timeline.ITEM_TYPES.WARNING,header,body);
+    this.addItem(Timeline.ITEM_TYPES.WARNING,header,body,body);
   };
   this.addError = function(header,body) {
-    this.addItem(Timeline.ITEM_TYPES.ERROR,header,body);
+    this.addItem(Timeline.ITEM_TYPES.ERROR,header,body,body);
   };
   
   // ToDo: add parsing failed indicator
-  this.addItem = function(type,header,body) {
+  this.addItem = function(type,header,body,rawBody,issue) {
     console.log('addItem: ',arguments);
     var $row = document.createElement("div");
     $row.setAttribute("class",'row ');
@@ -57,6 +60,12 @@ function Timeline($element) {
       $body.setAttribute("class",'body small-12 medium-9 columns');
       $body.textContent = body;
       $item.appendChild($body);
+    }
+    if(rawBody) {
+      var $rawBody = document.createElement("pre");
+      $rawBody.setAttribute("class",'rawbody small-12 medium-9 columns');
+      $rawBody.textContent = rawBody;
+      $item.appendChild($rawBody);
     }
     _$element.appendChild($row);
     fadeIn($item);
