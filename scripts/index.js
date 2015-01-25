@@ -1,9 +1,11 @@
 var $settings         = document.querySelector('#settings');
 var $settingsURL      = document.querySelector('#settings #url');
 var $timeline         = document.querySelector('#timeline'); 
-var $emitter          = document.querySelector('#emitter'); 
-
-var timeline      = new Timeline($timeline); 
+var $emitter          = document.querySelector('#emitter');
+var $eventType        = $emitter.querySelector('[name=eventType]');
+var $eventData        = $emitter.querySelector('[name=eventData]');
+var $jsonpreview      = $emitter.querySelector('#jsonpreview');
+var timeline          = new Timeline($timeline); 
 
 var _socket; 
 
@@ -53,9 +55,25 @@ function connect(url) {
   }); 
 }
 
+$eventData.onfocus = function(event) {
+  $jsonpreview.classList.add('show');
+  this.onkeyup = function(event) {
+    try {
+      var json = YAML.parse(this.value);
+      $jsonpreview.textContent = JSON.stringify(json, undefined, 2);
+      $jsonpreview.classList.remove('parseerror');
+    } catch(err) {
+      $jsonpreview.textContent = err;
+      $jsonpreview.classList.add('parseerror');
+    }
+  };
+};
+$eventData.onblur = function(event) {
+  this.onchange = null;
+  $jsonpreview.classList.remove('show');
+};
+
 $emitter.onsubmit = function(event) {
-  var $eventType = $emitter.querySelector('[name=eventType]');
-  var $eventData = $emitter.querySelector('[name=eventData]');
   sendMessage($eventType.value,YAML.parse($eventData.value));
   event.preventDefault();
 };

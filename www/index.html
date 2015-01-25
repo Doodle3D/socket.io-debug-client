@@ -17,17 +17,21 @@
   </form>
   <section id='timeline' class='row'>
   </section>
-  <form id='emitter' class='row collapse' enctype="multipart/form-data">
-    <div class='small-3 columns'>
-      <input type='text' class='' name='eventType' placeholder='Event type' required>
+  <section id='emitter'>
+    <div class='row collapse'>
+      <pre id='jsonpreview' class='small-offset-3 small-7 columns'></pre>
     </div>
-    <div class='small-7 columns'>
-      <textarea class='form-control' name='eventData' placeholder='Event data'></textarea>
-    </div>
-    <div class='small-2 columns'>
-      <button type='submit' class='button postfix'>Send</button>
-    </div>
-  </form>
+    <form id='emitter' class='row collapse' enctype="multipart/form-data">
+      <div class='small-3 columns'>
+        <input type='text' class='' name='eventType' placeholder='Event type' required>
+      </div>
+      <div class='small-7 columns'>
+        <textarea class='form-control' name='eventData' placeholder='Event data'></textarea>
+      </div>
+      <div class='small-2 columns'>
+        <button type='submit' class='button postfix'>Send</button>
+      </div>
+    </form>
   <script src='script.js' type='text/javascript'></script>
 </body>
 </html>
