@@ -21,31 +21,31 @@ function connect(url) {
   }
   _socket = io(url);
   _socket.on('connect',function() {
-    timeline.addSuccess('Connected to: ',url);
+    timeline.addSuccess('connect',url);
   });
   _socket.on('connect_error',function(err) {
-    timeline.addError('Connect error: ',err);
+    timeline.addError('connect_error',err);
   });
   _socket.on('connect_timeout',function() {
-    timeline.addError('Connection timeout');
+    timeline.addError('connect_timeout');
   });
   _socket.on('reconnect',function(num) {
-    timeline.addSuccess('Reconnected '+num);
+    timeline.addSuccess('reconnect',num);
   });
   _socket.on('reconnect_attempt',function() {
-    timeline.addWarning('Reconnect attempt');
+    timeline.addWarning('reconnect_attempt');
   });
   _socket.on('reconnecting',function(num) {
-    timeline.addWarning('Reconnecting '+num);
+    timeline.addWarning('reconnecting',num);
   });
   _socket.on('reconnect_error',function(err) {
-    timeline.addError('Reconnect error: ',err);
+    timeline.addError('reconnect_error',err);
   });
   _socket.on('reconnect_failed',function() {
-    timeline.addError('Reconnecting failed');
+    timeline.addError('reconnect_failed');
   });
   _socket.on('error',function(err) {
-    timeline.addError('Connect error: ',err);
+    timeline.addError('error',err);
   });
   anyEventCreator(_socket);
   _socket.on("any",function(eventType,data) {
