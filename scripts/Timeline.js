@@ -17,19 +17,13 @@ function Timeline($element) {
   };
     
   this.receivedEvent = function(type,data) {
-    var yaml = YAML.stringify(data,2);
-    var rawBody = JSON.stringify(data, undefined, 2);
-    this.addItem(Timeline.ITEM_TYPES.RECEIVED_EVENT,type,yaml,rawBody);
+    this.addItem(Timeline.ITEM_TYPES.RECEIVED_EVENT,type,data);
   };
   this.receivedResponse = function(response) {
-    var yaml = YAML.stringify(response,2);
-    var rawBody = JSON.stringify(data, undefined, 2);
-    this.addItem(Timeline.ITEM_TYPES.RECEIVED_RESPONSE,'Response',yaml,rawBody);
+    this.addItem(Timeline.ITEM_TYPES.RECEIVED_RESPONSE,'Response',response);
   };
   this.sendEvent = function(type,data) {
-    var yaml = YAML.stringify(data,2);
-    var rawBody = JSON.stringify(data, undefined, 2);
-    this.addItem(Timeline.ITEM_TYPES.SEND_EVENT,type,yaml,rawBody);
+    this.addItem(Timeline.ITEM_TYPES.SEND_EVENT,type,data);
   };
   this.addSuccess = function(header,body) {
     this.addItem(Timeline.ITEM_TYPES.SUCCESS,header,body,body);
@@ -45,8 +39,15 @@ function Timeline($element) {
   };
   
   // ToDo: add parsing failed indicator
-  this.addItem = function(type,header,body,rawBody,issue) {
+  this.addItem = function(type,header,body) {
     console.log('addItem: ',arguments);
+    
+    var rawBody;
+    if(typeof body == 'object') {
+      rawBody = JSON.stringify(body, undefined, 2);
+      body = YAML.stringify(body,2);
+    }
+    
     var $row = document.createElement("div");
     $row.setAttribute("class",'row ');
     
