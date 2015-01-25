@@ -23,8 +23,8 @@ paths.js = paths.bower_js.concat(paths.js);
 
 gulp.task('scripts', function() {
   return gulp.src(paths.js)
-    .pipe(concat('script.js'))
     .pipe(debug({title: 'scripts'}))
+    .pipe(concat('script.js'))
     //.pipe(uglify())
     .pipe(gulp.dest('www/'));
 });

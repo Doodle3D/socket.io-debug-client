@@ -93,7 +93,7 @@ function Timeline($element) {
   }
   _$clearTimeline.onclick = function() {
     _this.clear();
-  }
+  };
   _$autoscroll.onclick = function() {
     _autoscroll = !_autoscroll;
     this.classList.toggle('disabled');

@@ -9,6 +9,8 @@ var timeline          = new Timeline($timeline);
 
 var _socket; 
 
+$(document).foundation();
+
 $settings.onsubmit = function(event) {
   var url = $settingsURL.value;
   connect(url);
