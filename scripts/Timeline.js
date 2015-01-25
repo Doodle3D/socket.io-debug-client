@@ -1,7 +1,11 @@
 function Timeline($element) {
   
+  var _this = this;
   var _$element = $element;
-  
+  var _$content = $element.querySelector('.content');
+  var _$clearTimeline = $element.querySelector('#cleartimeline');
+  var _$autoscroll = $element.querySelector('#autoscroll');
+  var _autoscroll = true;
   Timeline.ITEM_TYPES = {
     RECEIVED_EVENT: 'received event',
     RECEIVED_RESPONSE: 'received response',
@@ -67,14 +71,16 @@ function Timeline($element) {
       $rawBody.textContent = rawBody;
       $item.appendChild($rawBody);
     }
-    _$element.appendChild($row);
+    _$content.appendChild($row);
     fadeIn($item);
-    _$element.scrollTop = _$element.scrollHeight;
+    if(_autoscroll) {
+      _$content.scrollTop = _$content.scrollHeight;
+    }
   };
   
   this.clear = function() {
-    while (_$element.firstChild) {
-      _$element.removeChild(_$element.firstChild);
+    while (_$content.firstChild) {
+      _$content.removeChild(_$content.firstChild);
     }
   };
   function fadeIn($element) {
@@ -85,4 +91,11 @@ function Timeline($element) {
     // Fade it in.
     $element.style.opacity = 1;
   }
+  _$clearTimeline.onclick = function() {
+    _this.clear();
+  }
+  _$autoscroll.onclick = function() {
+    _autoscroll = !_autoscroll;
+    this.classList.toggle('disabled');
+  };
 }
