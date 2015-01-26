@@ -42,7 +42,7 @@ function Timeline($element) {
   this.addItem = function(type,header,body) {
     console.log('addItem: ',arguments);
     
-    var rawBody;
+    var rawBody = body;
     if(typeof body == 'object') {
       rawBody = JSON.stringify(body, undefined, 2);
       body = YAML.stringify(body,2);
