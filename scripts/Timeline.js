@@ -45,7 +45,7 @@ function Timeline($element) {
     var rawBody = body;
     if(typeof body == 'object') {
       rawBody = JSON.stringify(body, undefined, 2);
-      body = YAML.stringify(body,2);
+      body = YAML.stringify(body,5,2);
     }
     
     var $row = document.createElement("div");
