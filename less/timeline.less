@@ -1,6 +1,7 @@
 #timeline {
   position: relative;
   overflow: hidden;
+  box-shadow: 0px 0px 2px rgb(153, 153, 153) inset;
   .content {
     height: 100%;
     overflow: scroll;
@@ -15,6 +16,7 @@
         clear: both;
         padding: 0;
         transition: opacity 500ms;
+        box-shadow: 0px 0px 3px rgb(200, 200, 200);
         .header {
           padding: 4px 8px;
           color: #fff;
@@ -92,11 +94,13 @@
     right: -4.9rem;
     padding: 0px 0px 0.6rem 1rem;
     list-style: none;
-    transition: right 500ms;
+    transition: right 500ms, background-color 500ms;
     background-color: rgba(255,255,255,0.8);
     border-radius: 0px 0px 0px 3px;
+    box-shadow: 0px 0px 5px rgb(153, 153, 153);
     &:hover {
       right: 0;
+      background-color: rgba(255,255,255,1);
     }
     a {
       display: block;
