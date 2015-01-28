@@ -83,7 +83,7 @@ $emitter.onsubmit = function(event) {
 function sendMessage(type,data) {
   if(!_socket) return;
   _socket.emit(type,data,function(response) {
-    timeline.receivedResponse(response);
+    timeline.receivedResponse(arguments);
   });
   timeline.sendEvent(type,data);
 }
