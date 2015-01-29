@@ -76,7 +76,6 @@ $eventData.onblur = function(event) {
 
 $emitter.onsubmit = function(event) {
   sendMessage($eventType.value,YAML.parse($eventData.value));
-  event.preventDefault();
 };
 
 function sendMessage(type,data) {
