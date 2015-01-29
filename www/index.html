@@ -7,7 +7,8 @@
   
 </head>
 <body>
-  <form id='settings' class='row collapse'>
+  <iframe name='hidden-iframe' class='hidden' src='about:blank'></iframe>
+  <form id='settings' class='row collapse' target='hidden-iframe'>
     <div class='small-9 medium-10 large-11 columns'>
       <input type='url' id='socket-url' name='socket-url' required placeholder='url' autofocus autocomplete='on' autosave='socket.io-debug-client-url'>
     </div>

@@ -14,7 +14,6 @@ $(document).foundation();
 $settings.onsubmit = function(event) {
   var url = $settingsURL.value;
   connect(url);
-  event.preventDefault();
   timeline.clear();
 };
 function connect(url) {
@@ -87,5 +86,3 @@ function sendMessage(type,data) {
   });
   timeline.sendEvent(type,data);
 }
-
-
