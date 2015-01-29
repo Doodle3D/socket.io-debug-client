@@ -1,5 +1,5 @@
 var $settings         = document.querySelector('#settings');
-var $settingsURL      = document.querySelector('#settings #url');
+var $settingsURL      = document.querySelector('#settings #socket-url');
 var $timeline         = document.querySelector('#timeline'); 
 var $emitter          = document.querySelector('#emitter');
 var $eventType        = $emitter.querySelector('[name=eventType]');
