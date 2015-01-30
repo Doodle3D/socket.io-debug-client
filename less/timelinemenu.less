@@ -1,0 +1,42 @@
+#timelinemenu {
+  position: relative;
+  
+  .menu {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: visible;
+    z-index: 1;
+    
+    ul {
+      position: relative;
+      top: 0px;
+      right: -4.9rem;
+      
+      padding: 0px 0px 0.6rem 1rem;
+      list-style: none;
+      transition: right 500ms, background-color 500ms;
+      background-color: rgba(255,255,255,0.8);
+      border-radius: 0px 0px 0px 3px;
+      box-shadow: 0px 0px 5px rgb(153, 153, 153);
+      &:hover {
+        right: 0;
+        background-color: rgba(255,255,255,1);
+      }
+      a {
+        display: block;
+        padding: 0 0.5rem 0 0;
+        &.disabled {
+          opacity: 0.5;
+          &:hover {
+            opacity: 1;
+          }
+        }
+        i {
+          margin: 0px 0.2rem 0px 0px;
+        }
+      }
+    }
+  } 
+}

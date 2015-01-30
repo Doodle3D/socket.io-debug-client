@@ -1,11 +1,12 @@
 var $settings         = document.querySelector('#settings');
 var $settingsURL      = document.querySelector('#settings #socket-url');
 var $timeline         = document.querySelector('#timeline'); 
+var $timelineMenu     = document.querySelector('#timelinemenu');
 var $emitter          = document.querySelector('#emitter');
 var $eventType        = $emitter.querySelector('[name=eventType]');
 var $eventData        = $emitter.querySelector('[name=eventData]');
 var $jsonpreview      = $emitter.querySelector('#jsonpreview');
-var timeline          = new Timeline($timeline); 
+var timeline          = new Timeline($timeline,$timelineMenu); 
 
 var _socket; 
 

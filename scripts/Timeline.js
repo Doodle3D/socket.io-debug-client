@@ -1,10 +1,10 @@
-function Timeline($element) {
+function Timeline($element,$timelineMenu) {
   
   var _this = this;
   var _$element = $element;
-  var _$content = $element.querySelector('.content');
-  var _$clearTimeline = $element.querySelector('#cleartimeline');
-  var _$autoscroll = $element.querySelector('#autoscroll');
+  var _$timelineMenu = $timelineMenu;
+  var _$clearTimeline = _$timelineMenu.querySelector('#cleartimeline');
+  var _$autoscroll = _$timelineMenu.querySelector('#autoscroll');
   var _autoscroll = true;
   Timeline.ITEM_TYPES = {
     RECEIVED_EVENT: 'received event',
@@ -72,16 +72,16 @@ function Timeline($element) {
       $rawBody.textContent = rawBody;
       $item.appendChild($rawBody);
     }
-    _$content.appendChild($row);
+    _$element.appendChild($row);
     fadeIn($item);
     if(_autoscroll) {
-      _$content.scrollTop = _$content.scrollHeight;
+      _$element.scrollTop = _$element.scrollHeight;
     }
   };
   
   this.clear = function() {
-    while (_$content.firstChild) {
-      _$content.removeChild(_$content.firstChild);
+    while (_$element.firstChild) {
+      _$element.removeChild(_$element.firstChild);
     }
   };
   function fadeIn($element) {
