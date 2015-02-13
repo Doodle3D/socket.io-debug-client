@@ -9,11 +9,14 @@
 <body>
   <iframe name='hidden-iframe' class='hidden' src='about:blank'></iframe>
   <form id='settings' class='row collapse' target='hidden-iframe'>
-    <div class='small-9 medium-10 large-11 columns'>
+    <div class='small-6 medium-8 large-10 columns'>
       <input type='url' id='socket-url' name='socket-url' required placeholder='url' autofocus autocomplete='on' autosave='socket.io-debug-client-url'>
     </div>
     <div class='small-3 medium-2 large-1 columns'>
       <button type='submit' class='postfix button connect' type='submit'>Connect!</button>
+    </div>
+    <div class='small-3 medium-2 large-1 columns'>
+      <button type='button' class='postfix button disconnect alert disabled' type='submit'>Disconnect</button>
     </div>
   </form>
   <section id='timelinemenu' class='row'>

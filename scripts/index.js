@@ -1,4 +1,5 @@
 var $settings         = document.querySelector('#settings');
+var $disconnectBtn    = document.querySelector('#settings .disconnect');
 var $settingsURL      = document.querySelector('#settings #socket-url');
 var $timeline         = document.querySelector('#timeline'); 
 var $timelineMenu     = document.querySelector('#timelinemenu');
@@ -9,21 +10,30 @@ var $jsonpreview      = $emitter.querySelector('#jsonpreview');
 var timeline          = new Timeline($timeline,$timelineMenu); 
 
 var _socket; 
+var _currentURL;
 
 $(document).foundation();
 
-$settings.onsubmit = function(event) {
+$settings.onsubmit = function() {
   var url = $settingsURL.value;
-  connect(url);
   timeline.clear();
+  connect(url);
+  $disconnectBtn.classList.remove('disabled');
 };
-function connect(url) {
-  console.log("connecting to: ",url);
+$disconnectBtn.onclick = function() {
+  console.log('disconnect');
   if(_socket) {
     _socket.disconnect();
     _socket.removeAllListeners();
   }
-  _socket = io(url);
+  $disconnectBtn.classList.add('disabled');
+};
+
+function connect(url) {
+  console.log("connecting to: ",url);
+  
+  _socket = io(url,{autoConnect:false});
+  _socket.connect();
   _socket.on('connect',function() {
     timeline.addSuccess('connect',url);
   });
