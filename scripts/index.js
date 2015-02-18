@@ -22,17 +22,21 @@ $settings.onsubmit = function() {
 };
 $disconnectBtn.onclick = function() {
   console.log('disconnect');
+  disconnect();
+};
+
+function disconnect() {
   if(_socket) {
     _socket.disconnect();
     _socket.removeAllListeners();
   }
   $disconnectBtn.classList.add('disabled');
-};
-
+}
 function connect(url) {
-  console.log("connecting to: ",url);
-  
-  _socket = io(url,{autoConnect:false});
+  var opts = {autoConnect:false,forceNew:true};
+  console.log("connecting to: ",url,opts);
+  disconnect();
+  _socket = io(url,opts);
   _socket.connect();
   _socket.on('connect',function() {
     timeline.addSuccess('connect',url);
