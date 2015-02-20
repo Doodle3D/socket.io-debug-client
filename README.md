@@ -14,6 +14,8 @@ It currently uses yaml to make json easier to read and write.
 Lot's still to do: https://github.com/Doodle3D/socket.io-debug-client/issues
 
 ![screenshot](https://raw.github.com/Doodle3D/socket.io-debug-client/master/screenshots/screenshot.png)
+![screenshot-responsive](https://raw.github.com/Doodle3D/socket.io-debug-client/master/screenshots/screenshot-responsive.png)
+![screenshot-errors](https://raw.github.com/Doodle3D/socket.io-debug-client/master/screenshots/screenshot-errors.png)
 
 License
 ------------
