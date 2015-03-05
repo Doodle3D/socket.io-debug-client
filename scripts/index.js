@@ -10,6 +10,7 @@ var $jsonpreview      = $emitter.querySelector('#jsonpreview');
 var timeline          = new Timeline($timeline,$timelineMenu); 
 
 var _socket; 
+var _ss; // socket.io-stream socket
 var _currentURL;
 
 $(document).foundation();
@@ -68,6 +69,11 @@ function connect(url) {
   anyEventCreator(_socket);
   _socket.on("any",function(eventType,data) {
     timeline.receivedEvent(eventType,data);
+  });
+  _ss = ss(_socket); 
+  anyEventCreator(_ss);
+  _ss.on("any",function(eventType,stream,data) {
+    timeline.receivedStreamingEvent(eventType,data);
   }); 
 }
 

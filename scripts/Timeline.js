@@ -8,6 +8,7 @@ function Timeline($element,$timelineMenu) {
   var _autoscroll = true;
   Timeline.ITEM_TYPES = {
     RECEIVED_EVENT: 'received event',
+    RECEIVED_STREAMING_EVENT: 'received streaming event',
     RECEIVED_RESPONSE: 'received response',
     SEND_EVENT: 'send event',
     SUCCESS: 'connection success',
@@ -18,6 +19,9 @@ function Timeline($element,$timelineMenu) {
     
   this.receivedEvent = function(type,data) {
     this.addItem(Timeline.ITEM_TYPES.RECEIVED_EVENT,type,data);
+  };
+  this.receivedStreamingEvent = function(type,data) {
+    this.addItem(Timeline.ITEM_TYPES.RECEIVED_STREAMING_EVENT,type,data);
   };
   this.receivedResponse = function(response) {
     this.addItem(Timeline.ITEM_TYPES.RECEIVED_RESPONSE,'Response',response);
